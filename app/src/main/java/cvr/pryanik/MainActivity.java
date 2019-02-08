@@ -4,11 +4,13 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
+//import android.widget.Toast;
 
 import com.arellomobile.mvp.MvpAppCompatActivity;
 import com.arellomobile.mvp.MvpDelegate;
 import com.arellomobile.mvp.presenter.InjectPresenter;
+
+import cvr.pryanik.util.Dialogs;
 
 public class MainActivity extends MvpAppCompatActivity implements ILoaderView {
 
@@ -52,12 +54,13 @@ public class MainActivity extends MvpAppCompatActivity implements ILoaderView {
 
     @Override
     public void showBtnPlusPressed(String txt) {
-        Toast.makeText(this, txt, Toast.LENGTH_LONG).show();
+        Dialogs.showMessage(this,txt);
+//        Toast.makeText(this, txt, Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void showBtnMinusPressed(String txt) {
-        Toast.makeText(this, txt, Toast.LENGTH_SHORT).show();
+        Dialogs.showMessage(this,txt);
     }
 
 }

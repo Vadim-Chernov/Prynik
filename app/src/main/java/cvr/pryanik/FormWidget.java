@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
+//import android.widget.Toast;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.PresenterType;
@@ -19,6 +19,7 @@ import com.arellomobile.mvp.presenter.PresenterType;
 import java.util.List;
 
 import cvr.pryanik.service.Variant;
+import cvr.pryanik.util.Dialogs;
 
 public class FormWidget extends BaseWidget<FormWidget> implements IPryanikView {
 
@@ -46,9 +47,16 @@ public class FormWidget extends BaseWidget<FormWidget> implements IPryanikView {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                Toast.makeText(getContext(),"onNothingSelected",Toast.LENGTH_SHORT).show();
+                Dialogs.showMessage(getContext(), "onNothingSelected");
+//                Toast.makeText(getContext(),"onNothingSelected",Toast.LENGTH_SHORT).show();
             }
         });
+
+        listView.setOnItemClickListener((parent, view, position, id) -> onItemClick(id));
+    }
+
+    private void onItemClick(long id) {
+        mPryanikPresenter.onItemClick(id);
     }
 
     private void spinnerOnItemClick(int id) {
@@ -80,13 +88,19 @@ public class FormWidget extends BaseWidget<FormWidget> implements IPryanikView {
 
     @Override
     public void setSpinnerValues(List<Variant> list) {
-        ArrayAdapter<Variant> adapter = new ArrayAdapter<>(getContext(), R.layout.spinnerrowlayout,R.id.label, list);
+        ArrayAdapter<Variant> adapter = new ArrayAdapter<>(getContext(), R.layout.spinnerrowlayout, R.id.label, list);
         spinner.setAdapter(adapter);
     }
 
     @Override
     public void saySpinnerOnItemClick(String txt) {
-        Toast.makeText(getContext(),txt,Toast.LENGTH_SHORT).show();
+        Dialogs.showMessage(getContext(), txt);
+    }
+
+    @Override
+    public void sayOnItemClick(String txt) {
+        Dialogs.showMessage(getContext(), txt);
+
     }
 }
 

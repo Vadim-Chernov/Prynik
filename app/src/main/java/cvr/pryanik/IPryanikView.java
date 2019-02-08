@@ -26,6 +26,8 @@ public interface IPryanikView extends MvpView {
 
     void saySpinnerOnItemClick(String s);
 
+    void sayOnItemClick(String s);
+
 //    void setSpinnerValues(String[] values);
 
 }
