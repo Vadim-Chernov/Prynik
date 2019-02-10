@@ -85,4 +85,8 @@ public class Service {
     public static String getName() {
         return name;
     }
+
+    public static String getObjectById(long id){
+        return view.get(new Long(id).intValue());
+    }
 }

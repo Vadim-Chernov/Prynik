@@ -1,16 +1,11 @@
 package cvr.pryanik.util;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-
 import com.google.gson.Gson;
 
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.List;
 
-import cvr.pryanik.service.Data;
 import cvr.pryanik.service.JsonRootBean;
 
 public class JSONUtils {

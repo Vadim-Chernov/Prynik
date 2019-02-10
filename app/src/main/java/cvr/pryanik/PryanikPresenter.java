@@ -38,10 +38,11 @@ public class PryanikPresenter extends MvpPresenter<IPryanikView> {
     }
 
     public void spinnerOnItemClick(int num) {
+
         getViewState().saySpinnerOnItemClick("Spinner выбор : " + num);
     }
 
     public void onItemClick(long id) {
-        getViewState().sayOnItemClick(" ListView выбран : " + id);
+        getViewState().sayOnItemClick("ListView выбран : id="+id+"    view=" + Service.getObjectById(id));
     }
 }
