@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
 
+import cvr.pryanik.service.IService;
 import cvr.pryanik.service.Service;
 
 
@@ -15,7 +16,7 @@ public class LoadPresenter extends MvpPresenter<ILoaderView> {
     private static final String URI_JSON = "https://prnk.blob.core.windows.net/tmp/JSONSample.json";
 
     // Использовать инжекцию
-    private Service service = Service.getInstance();
+    private IService service = Service.getInstance();
 
     public LoadPresenter() {
         @SuppressLint("StaticFieldLeak")

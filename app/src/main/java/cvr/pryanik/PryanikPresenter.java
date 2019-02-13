@@ -7,6 +7,7 @@ import android.os.AsyncTask;
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
 
+import cvr.pryanik.service.IService;
 import cvr.pryanik.service.Service;
 
 
@@ -15,7 +16,7 @@ public class PryanikPresenter extends MvpPresenter<IPryanikView> {
 
     private Bitmap bitmap;
 // Использовать инжекцию
-    private Service service = Service.getInstance();
+    private IService service = Service.getInstance();
 
 
     public PryanikPresenter() {

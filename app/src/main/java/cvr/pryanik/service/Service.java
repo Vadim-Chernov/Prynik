@@ -15,7 +15,7 @@ import java.util.List;
  * Фейковый сервис имитирующий работу реального сервиса
  */
 
-public class Service {
+public class Service implements IService {
     private static Service service;
     private static String text;
     private static String name;
@@ -35,7 +35,20 @@ public class Service {
     }
 
 
-    public static Bitmap loadPicture(String path) {
+    private static JsonRootBean parseJSON(String json) {
+        Gson gson = new Gson();
+        jsonRootBean = gson.fromJson(json, JsonRootBean.class);
+        return jsonRootBean;
+    }
+
+    private  static List<Variant> getVariants(List<Data> list) {
+        List<Variant> reslt = new ArrayList<>(list.size());
+        for (Data data : list)
+            reslt.add(new Variant(data.getId(), data.getText()));
+        return reslt;
+    }
+
+    public Bitmap loadPicture(String path) {
         Bitmap bitmap = null;
         try {
             URL url = new URL(path);
@@ -57,19 +70,7 @@ public class Service {
         return bitmap;
     }
 
-    private static JsonRootBean parseJSON(String json) {
-        Gson gson = new Gson();
-        jsonRootBean = gson.fromJson(json, JsonRootBean.class);
-        return jsonRootBean;
-    }
-
-    private  static List<Variant> getVariants(List<Data> list) {
-        List<Variant> reslt = new ArrayList<>(list.size());
-        for (Data data : list)
-            reslt.add(new Variant(data.getId(), data.getText()));
-        return reslt;
-    }
-
+    @Override
     public void loadJSON(String path) {
         try {
             URL url = new URL(path);
@@ -97,39 +98,46 @@ public class Service {
         }
         initData();
     }
+    public static IService getInstance() {
+        if (Service.service == null)
+            Service.service = new Service();
+        return Service.service;
+    }
 
+    @Override
     public  List<String> getView() {
         return view;
     }
 
 
+    @Override
     public String getText() {
         return text;
     }
 
+    @Override
     public String getUrl() {
         return url;
     }
 
+    @Override
     public Integer getSelectedId() {
         return selectedId;
     }
 
+    @Override
     public List<Variant> getVariants() {
         return variants;
     }
 
+    @Override
     public String getName() {
         return name;
     }
 
+    @Override
     public String getObjectById(long id) {
         return view.get((int) id);
     }
 
-    public static Service getInstance() {
-        if (service == null)
-            service = new Service();
-        return service;
-    }
 }
