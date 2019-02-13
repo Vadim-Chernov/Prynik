@@ -51,7 +51,6 @@ public class Service {
 
     public static Bitmap loadPicture(String path) {
         Bitmap bitmap = null;
-//        JsonRootBean jsonRootBean = parseJSON();
         try {
             URL url = new URL(path);
 
@@ -132,7 +131,7 @@ public class Service {
     }
 
     @SuppressLint("UseValueOf")
-    public static String getObjectById(long id){
-        return view.get(new Long(id).intValue());
+    public static String getObjectById(long id) {
+        return view.get((int) id);
     }
 }
