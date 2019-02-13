@@ -6,9 +6,6 @@ public class Variant {
     private Integer id;
     private String text;
 
-    public Variant() {
-    }
-
     public Variant(Integer id, String text) {
         this.id = id;
         this.text = text;
