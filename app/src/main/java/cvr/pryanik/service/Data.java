@@ -2,7 +2,6 @@ package cvr.pryanik.service;
 
 import java.util.List;
 
-//@lombok.Data
 public class Data {
     private Integer id;
     private String name;

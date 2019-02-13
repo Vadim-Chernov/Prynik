@@ -23,7 +23,7 @@ import cvr.pryanik.util.Dialogs;
 
 public class FormWidget extends BaseWidget<FormWidget> implements IPryanikView {
 
-    @InjectPresenter(type = PresenterType.GLOBAL)
+    @InjectPresenter
     PryanikPresenter mPryanikPresenter;
 
     private TextView nameTextView;
@@ -48,7 +48,6 @@ public class FormWidget extends BaseWidget<FormWidget> implements IPryanikView {
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
                 Dialogs.showMessage(getContext(), "onNothingSelected");
-//                Toast.makeText(getContext(),"onNothingSelected",Toast.LENGTH_SHORT).show();
             }
         });
 

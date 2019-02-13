@@ -55,7 +55,6 @@ public class MainActivity extends MvpAppCompatActivity implements ILoaderView {
     @Override
     public void showBtnPlusPressed(String txt) {
         Dialogs.showMessage(this,txt);
-//        Toast.makeText(this, txt, Toast.LENGTH_LONG).show();
     }
 
     @Override

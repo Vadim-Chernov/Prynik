@@ -7,7 +7,6 @@ import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
 
 import cvr.pryanik.service.Service;
-import cvr.pryanik.util.JSONUtils;
 
 
 @InjectViewState
@@ -23,8 +22,7 @@ public class LoadPresenter extends MvpPresenter<ILoaderView> {
 
             @Override
             protected Void doInBackground(Void... voids) {
-                JSONUtils.initJSON(URI_JSON);
-                Service.init();
+                Service.initJSON(URI_JSON);
                 publishProgress(Service.getText());
                 return null;
             }
