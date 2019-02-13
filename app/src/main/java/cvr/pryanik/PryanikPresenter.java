@@ -14,6 +14,8 @@ import cvr.pryanik.service.Service;
 public class PryanikPresenter extends MvpPresenter<IPryanikView> {
 
     private Bitmap bitmap;
+// Использовать инжекцию
+    private Service service = Service.getInstance();
 
 
     public PryanikPresenter() {
@@ -21,17 +23,17 @@ public class PryanikPresenter extends MvpPresenter<IPryanikView> {
         AsyncTask<Void, Void, Void> task = new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... voids) {
-                bitmap = Service.loadPicture(Service.getUrl());
+                bitmap = service.loadPicture(service.getUrl());
                 return null;
             }
 
             @Override
             protected void onPostExecute(Void aVoid) {
                 getViewState().setImage(bitmap);
-                getViewState().setName(Service.getName());
-                getViewState().setSpinnerValues(Service.getVariants());
-                getViewState().setSpinner(Service.getSelectedId());
-                getViewState().setList(Service.getView());
+                getViewState().setName(service.getName());
+                getViewState().setSpinnerValues(service.getVariants());
+                getViewState().setSpinner(service.getSelectedId());
+                getViewState().setList(service.getView());
             }
         };
         task.execute();
@@ -43,6 +45,6 @@ public class PryanikPresenter extends MvpPresenter<IPryanikView> {
     }
 
     public void onItemClick(long id) {
-        getViewState().sayOnItemClick("ListView выбран : id="+id+"    view=" + Service.getObjectById(id));
+        getViewState().sayOnItemClick("ListView выбран : id="+id+"    view=" + service.getObjectById(id));
     }
 }

@@ -1,6 +1,5 @@
 package cvr.pryanik.service;
 
-import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
@@ -17,6 +16,7 @@ import java.util.List;
  */
 
 public class Service {
+    private static Service service;
     private static String text;
     private static String name;
     private static String url;
@@ -26,10 +26,6 @@ public class Service {
     private static JsonRootBean jsonRootBean;
 
     private static void initData() {
-        JsonRootBean jsonRootBean = getJsonRootBean();
-        if (jsonRootBean == null)
-            return;
-
         text = jsonRootBean.getData().get(0).getData().getText();
         url = jsonRootBean.getData().get(1).getData().getUrl();
         selectedId = jsonRootBean.getData().get(2).getData().getSelectedId();
@@ -38,16 +34,6 @@ public class Service {
         view = jsonRootBean.getView();
     }
 
-    public static List<String> getView() {
-        return view;
-    }
-
-    private static List<Variant> getVariants(List<Data> list) {
-        List<Variant> reslt = new ArrayList<>(list.size());
-        for (Data data : list)
-            reslt.add(new Variant(data.getId(), data.getText()));
-        return reslt;
-    }
 
     public static Bitmap loadPicture(String path) {
         Bitmap bitmap = null;
@@ -77,12 +63,14 @@ public class Service {
         return jsonRootBean;
     }
 
-    public static JsonRootBean getJsonRootBean() {
-        return jsonRootBean;
+    private  static List<Variant> getVariants(List<Data> list) {
+        List<Variant> reslt = new ArrayList<>(list.size());
+        for (Data data : list)
+            reslt.add(new Variant(data.getId(), data.getText()));
+        return reslt;
     }
 
-
-    public static void initJSON(String path) {
+    public void loadJSON(String path) {
         try {
             URL url = new URL(path);
 
@@ -99,6 +87,7 @@ public class Service {
 
                 String json = new String(buffer);
                 jsonRootBean = parseJSON(json);
+                initData();
 
                 httpConn.disconnect();
                 in.close();
@@ -109,29 +98,38 @@ public class Service {
         initData();
     }
 
+    public  List<String> getView() {
+        return view;
+    }
 
-    public static String getText() {
+
+    public String getText() {
         return text;
     }
 
-    public static String getUrl() {
+    public String getUrl() {
         return url;
     }
 
-    public static Integer getSelectedId() {
+    public Integer getSelectedId() {
         return selectedId;
     }
 
-    public static List<Variant> getVariants() {
+    public List<Variant> getVariants() {
         return variants;
     }
 
-    public static String getName() {
+    public String getName() {
         return name;
     }
 
-    @SuppressLint("UseValueOf")
-    public static String getObjectById(long id) {
+    public String getObjectById(long id) {
         return view.get((int) id);
+    }
+
+    public static Service getInstance() {
+        if (service == null)
+            service = new Service();
+        return service;
     }
 }

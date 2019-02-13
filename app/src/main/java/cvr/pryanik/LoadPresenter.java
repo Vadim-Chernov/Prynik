@@ -14,7 +14,8 @@ public class LoadPresenter extends MvpPresenter<ILoaderView> {
 
     private static final String URI_JSON = "https://prnk.blob.core.windows.net/tmp/JSONSample.json";
 
-    Service service;
+    // Использовать инжекцию
+    private Service service = Service.getInstance();
 
     public LoadPresenter() {
         @SuppressLint("StaticFieldLeak")
@@ -22,8 +23,8 @@ public class LoadPresenter extends MvpPresenter<ILoaderView> {
 
             @Override
             protected Void doInBackground(Void... voids) {
-                Service.initJSON(URI_JSON);
-                publishProgress(Service.getText());
+                service.loadJSON(URI_JSON);
+                publishProgress(service.getText());
                 return null;
             }
 
