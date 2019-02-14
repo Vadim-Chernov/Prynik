@@ -1,6 +1,7 @@
-package cvr.pryanik.service;
+package cvr.pryanik.model;
 
 import android.support.annotation.NonNull;
+@lombok.Data
 
 public class Variant {
     private Integer id;
@@ -8,22 +9,6 @@ public class Variant {
 
     public Variant(Integer id, String text) {
         this.id = id;
-        this.text = text;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
         this.text = text;
     }
 

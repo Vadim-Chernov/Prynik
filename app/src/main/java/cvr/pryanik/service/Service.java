@@ -11,6 +11,10 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import cvr.pryanik.model.Data;
+import cvr.pryanik.model.JsonRootBean;
+import cvr.pryanik.model.Variant;
+
 /**
  * Фейковый сервис имитирующий работу реального сервиса
  */
@@ -61,7 +65,7 @@ public class Service implements IService {
             if (resCode == HttpURLConnection.HTTP_OK) {
                 InputStream in = httpConn.getInputStream();
                 bitmap = BitmapFactory.decodeStream(in);
-                httpConn.disconnect();
+//                httpConn.disconnect();
                 in.close();
             }
         } catch (Exception e) {
@@ -90,7 +94,7 @@ public class Service implements IService {
                 jsonRootBean = parseJSON(json);
                 initData();
 
-                httpConn.disconnect();
+//                httpConn.disconnect();
                 in.close();
             }
         } catch (Exception e) {

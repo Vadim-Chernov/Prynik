@@ -8,7 +8,7 @@ import com.arellomobile.mvp.viewstate.strategy.StateStrategyType;
 
 import java.util.List;
 
-import cvr.pryanik.service.Variant;
+import cvr.pryanik.model.Variant;
 
 
 public interface IPryanikView extends MvpView {

@@ -14,11 +14,10 @@ import android.widget.TextView;
 //import android.widget.Toast;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
-import com.arellomobile.mvp.presenter.PresenterType;
 
 import java.util.List;
 
-import cvr.pryanik.service.Variant;
+import cvr.pryanik.model.Variant;
 import cvr.pryanik.util.Dialogs;
 
 public class FormWidget extends BaseWidget<FormWidget> implements IPryanikView {

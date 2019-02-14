@@ -1,12 +1,10 @@
 package cvr.pryanik.service;
 
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.List;
+
+import cvr.pryanik.model.Variant;
 
 public interface IService {
     Bitmap loadPicture(String path);
